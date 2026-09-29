@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="id" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | Ant - Preset</title>
+  
+  <link rel="stylesheet" href="css/style.css">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: { colors: { ant: '#22c55e', antDark: '#16a34a', darkBg: '#030712' } } }
+    }
+  </script>
+  
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="bg-darkBg text-gray-100 min-h-screen font-sans selection:bg-ant selection:text-gray-950 py-10 px-4 flex items-center justify-center">
+
+  <div class="bg-gray-900 border border-gray-800 w-full max-w-lg rounded-3xl p-6 sm:p-8 relative shadow-2xl">
+    <div class="flex items-center gap-3 mb-6">
+      <div class="p-3 bg-green-500/10 border border-green-500/20 rounded-2xl text-green-400">
+        <i data-lucide="shield-check" class="w-6 h-6"></i>
+      </div>
+      <div>
+        <h3 class="text-lg font-bold text-white tracking-tight">Admin Upload Panel</h3>
+        <p class="text-xs text-gray-400">Tambah preset baru langsung ke database publik</p>
+      </div>
+    </div>
+    
+    <form id="uploadForm" class="space-y-4">
+      <div>
+        <label class="text-xs text-gray-400 font-semibold block mb-1.5">Passkey Admin</label>
+        <input type="password" id="passkeyInput" required placeholder="Masukkan passkey rahasia" class="form-input">
+      </div>
+      
+      <div>
+        <label class="text-xs text-gray-400 font-semibold block mb-1.5">Judul Preset</label>
+        <input type="text" id="titleInput" required placeholder="Contoh: JJ Thin Smooth Sound Viral TikTok" class="form-input">
+      </div>
+      
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div>
+          <label class="text-xs text-green-400 font-semibold block mb-1.5">Link Alight Link (5MB)</label>
+          <input type="url" id="alightLinkInput" placeholder="https://alight.link/..." class="form-input">
+        </div>
+        <div>
+          <label class="text-xs text-cyan-400 font-semibold block mb-1.5">Link File XML (Drive/MF)</label>
+          <input type="url" id="xmlLinkInput" placeholder="https://drive.google.com/..." class="form-input">
+        </div>
+      </div>
+
+      <div>
+        <label class="text-xs text-gray-400 font-semibold block mb-1.5">URL Video Preview MP4 (Opsional)</label>
+        <input type="url" id="videoInput" placeholder="Direct link .mp4 (Catbox/Supabase)" class="form-input">
+      </div>
+      
+      <div class="grid grid-cols-2 gap-3">
+        <div>
+          <label class="text-xs text-gray-400 font-semibold block mb-1.5">Kategori</label>
+          <select id="categoryInput" class="form-input py-3 cursor-pointer">
+            <option value="5MB">5MB</option>
+            <option value="XML">XML</option>
+            <option value="JJ">Jedag Jedug</option>
+            <option value="Velocity">Velocity</option>
+          </select>
+        </div>
+        <div>
+          <label class="text-xs text-gray-400 font-semibold block mb-1.5">URL Thumbnail Gambar</label>
+          <input type="url" id="thumbInput" placeholder="https://..." class="form-input">
+        </div>
+      </div>
+
+      <button type="submit" class="w-full bg-gradient-to-r from-green-500 to-emerald-400 hover:from-green-400 hover:to-emerald-300 text-gray-950 font-black py-3.5 rounded-2xl text-sm transition-all mt-4 shadow-xl shadow-green-500/20 active:scale-95 flex items-center justify-center gap-2">
+        <i data-lucide="upload-cloud" class="w-4 h-4"></i>
+        <span>Publish Preset Sekarang</span>
+      </button>
+    </form>
+    
+    <div class="mt-6 text-center">
+      <a href="index.html" class="text-xs text-gray-400 hover:text-green-400 transition flex items-center justify-center gap-1">
+        <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i> Lihat Halaman Katalog Publik
+      </a>
+    </div>
+  </div>
+
+  <div id="toastContainer" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+  <!-- Admin Script -->
+  <script src="js/admin.js"></script>
+</body>
+</html>
